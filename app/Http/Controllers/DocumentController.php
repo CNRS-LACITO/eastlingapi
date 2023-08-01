@@ -116,6 +116,7 @@ class DocumentController extends Controller
         $document->lang = $request->lang;
         $document->oai_primary = $request->oai_primary;
         $document->oai_secondary = $request->oai_secondary;
+        $document->annotations_filename = $request->annotations_filename;
 
         $document->save();
 

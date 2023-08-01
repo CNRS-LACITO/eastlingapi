@@ -12,7 +12,7 @@ class Document extends Model
      * @var array
      */
     protected $fillable = [
-        'lang','type','recording_date','recording_place','available_kindOf','available_lang','oai_primary','oai_secondary'
+        'lang','type','recording_date','recording_place','available_kindOf','available_lang','oai_primary','oai_secondary','annotations_filename'
     ];
 
     protected $casts = [
