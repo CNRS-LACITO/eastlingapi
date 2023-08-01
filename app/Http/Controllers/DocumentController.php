@@ -258,7 +258,7 @@ class DocumentController extends Controller
 
     public function buildAnnotationsXML($document){
         $root = '<?xml version="1.0" encoding="utf-8"?>'.PHP_EOL."\t".'<!DOCTYPE '.$document->type.' SYSTEM "https://cocoon.huma-num.fr/schemas/Archive.dtd">'.PHP_EOL;
-        $root.='<'.$document->type.' id="eastling-documents_'.$document->id.'" xml:lang="'.$document->lang.'"></'.$document->type.'>';
+        $root.='<'.$document->type.' id="'.$document->annotations_filename.'" xml:lang="'.$document->lang.'"></'.$document->type.'>';
         
         //$root = '<'.$document->type.' id="eastling-documents_'.$document->id.'" xml:lang="'.$document->lang.'"></'.$document->type.'>';
         $xmlAnnotations = new \SimpleXMLElement($root);
