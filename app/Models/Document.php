@@ -52,6 +52,14 @@ class Document extends Model
         return $this->hasMany(Annotation::class)->wherein('type',['T']);
     }
 
+    /**
+     * Get the recording associated with the document.
+     */
+    public function recording()
+    {
+        return $this->hasOne(Recording::class);
+    }
+
         /**
      * Get the images for the document.
      */
