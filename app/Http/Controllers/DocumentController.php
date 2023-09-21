@@ -263,6 +263,8 @@ class DocumentController extends Controller
         if($filename === null) $filename = $document->annotations_filename;
         if($filename === null) $filename = $document->recording->filename;
         if($filename === null) $filename = "eastling_".$document->id;
+
+        
         //
 
         $root = '<?xml version="1.0" encoding="utf-8"?>'.PHP_EOL."\t".'<!DOCTYPE '.$document->type.' SYSTEM "https://cocoon.huma-num.fr/schemas/Archive.dtd">'.PHP_EOL;

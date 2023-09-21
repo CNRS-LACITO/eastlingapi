@@ -57,16 +57,12 @@ use Illuminate\Support\Str;
                              'charset'    => 'utf8',
                              'collation'  => 'utf8_general_ci',
                              'prefix'     => '',
-                             /*
                              'sslmode' => env('DB_SSLMODE', 'prefer'),
-                             'options'    => array(//PDO::MYSQL_ATTR_SSL_KEY  => NULL,
-                                                   PDO::MYSQL_ATTR_SSL_CERT => env('DB_MYSQL_ATTR_SSL_CERT','/shared/hncert/__db_huma-num_fr_interm_root.cer'),
-                                                   //PDO::MYSQL_ATTR_SSL_CA => NULL,
-                                                   PDO::MYSQL_ATTR_SSL_CA => '/dev/null',
-                                                   //PDO::MYSQL_ATTR_SSL_CIPHER => NULL,
-                                                   PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => 'false'
+                             'options'    => env('APP_ENV')==='local' ? null : array(
+                                                   PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => 'false',
+                                                   PDO::MYSQL_ATTR_SSL_CA =>env('DB_MYSQL_ATTR_SSL_CA','/shared/hncert/__db_huma-num_fr_interm_root.cer')
                                                ),
-*/
+
                         ),
 
         ),
