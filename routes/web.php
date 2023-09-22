@@ -66,7 +66,8 @@ $router->group(['prefix' => $prefix], function () use ($router) {
 		$router->get('documents/{docId}/annotations/{id}', 'AnnotationController@get');
 		$router->get('documents/{docId}/contributors', 'DocumentContributorController@getDocumentContributors');
 		$router->get('documents/{docId}/titles', 'DocumentTitleController@getDocumentTitles');
-		$router->get('documents/{id}/annotationsxml', 'DocumentController@getDocumentAnnotationsXML');
+		//$router->get('documents/{id}/annotationsxml', 'DocumentController@getDocumentAnnotationsXML');
+		$router->post('documents/annotationsxml', 'DocumentController@getDocumentAnnotationsXML');
 		$router->get('documents/{id}/annotationsjson4latex', 'DocumentController@getDocumentAnnotationsJSON4LATEX');
 
 		//Contributor routes

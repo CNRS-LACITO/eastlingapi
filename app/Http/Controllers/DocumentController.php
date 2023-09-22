@@ -200,7 +200,7 @@ class DocumentController extends Controller
             $xmlChildrenAnnotation->addAttribute('id','eastling-annotations_'.$childAnnotation->id);
 
 //__________AREA
-            if(sizeof($childAnnotation->imageCoords)>0){
+            if($childAnnotation->imageCoords && sizeof($childAnnotation->imageCoords)>0){
                 foreach($childAnnotation->imageCoords as $imageCoord){
                     $xmlArea = $xmlChildrenAnnotation->addChild('AREA');
                     $xmlArea->addAttribute('image','eastling-images_'.$imageCoord['image_id']);
@@ -256,15 +256,14 @@ class DocumentController extends Controller
         }
     }
 
-    public function buildAnnotationsXML($document){
+    public function buildAnnotationsXML($document,$annotations_filename){
         $filename = null;
 
         //#47
+        if($filename === null) $filename = $annotations_filename;
         if($filename === null) $filename = $document->annotations_filename;
         if($filename === null) $filename = $document->recording->filename;
         if($filename === null) $filename = "eastling_".$document->id;
-
-        
         //
 
         $root = '<?xml version="1.0" encoding="utf-8"?>'.PHP_EOL."\t".'<!DOCTYPE '.$document->type.' SYSTEM "https://cocoon.huma-num.fr/schemas/Archive.dtd">'.PHP_EOL;
@@ -311,18 +310,16 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function getDocumentAnnotationsXML($id)
+    public function getDocumentAnnotationsXML(Request $request)
     {
         $this->middleware('auth');
         $user = Auth::user();
 
-        $document = Document::where(['id' => $id,'user_id' => $user->id])->with(['titles','contributors','annotations.forms.notes','annotations.translations.notes','annotations.childrenAnnotations'])->first();
+        $document = Document::where(['id' => $request['docId'],'user_id' => $user->id])->with(['titles','contributors','annotations.forms.notes','annotations.translations.notes','annotations.childrenAnnotations'])->first();
 
-        $xml = $this->buildAnnotationsXML($document);
-            
+        $xml = $this->buildAnnotationsXML($document,$request["annotations_filename"]);
         return response($xml)->header('Content-Type', 'xml');
-          
-        
+
     }
 
             /**
