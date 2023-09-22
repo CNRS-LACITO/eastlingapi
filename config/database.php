@@ -49,11 +49,11 @@ use Illuminate\Support\Str;
 
             'mysql' => array('driver' => 'mysql',
                             'connection' => env('DB_CONNECTION', 'mysql'),
-                             'host'       => env('DB_HOST', 'mysql80a.db.huma-num.fr'),
+                             'host'       => env('DB_HOST', '127.0.0.1'),
                              'port'       => env('DB_PORT', '3306'),
                              'database'   => env('DB_DATABASE', 'eastling'),
                              'username'   => env('DB_USERNAME', 'eastling'),
-                             'password'   => env('DB_PASSWORD', 'PnuhyCZ0or_kQ7ZmfgCtC'),
+                             'password'   => env('DB_PASSWORD', 'vacCe.QuegpiOwm0'),
                              'charset'    => 'utf8',
                              'collation'  => 'utf8_general_ci',
                              'prefix'     => '',

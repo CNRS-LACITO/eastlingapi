@@ -74,11 +74,15 @@ class RecordingController extends Controller
 
             //si format WAV on compresse en MP3
             if($extension ==="wav"){
-
-                $ffmpegBinPath = 'C:\ffmpeg\bin\ffmpeg.exe';
-                $ffprobeBinPath = 'C:\ffmpeg\bin\ffprobe.exe';
-                //'ffmpeg.binaries' => '/usr/local/bin/ffmpeg',
-                //'ffprobe.binaries' => '/usr/local/bin/ffprobe'
+                if(env('APP_ENV')==='local'){
+                    $ffmpegBinPath = 'C:\ffmpeg\bin\ffmpeg.exe';
+                    $ffprobeBinPath = 'C:\ffmpeg\bin\ffprobe.exe';
+                }else{
+                    $ffmpegBinPath = '/usr/local/bin/ffmpeg';
+                    $ffprobeBinPath = '/usr/local/bin/ffprobe';
+                }
+                
+                
 
                 $tmpOriginalFile = str_replace($extension,"",$request->filename).'.wav';
                 $tmpCompressedFile = str_replace($extension,"",$request->filename).'.mp3';
@@ -101,9 +105,10 @@ class RecordingController extends Controller
 
                 unlink($tmpOriginalFile);
                 unlink($tmpCompressedFile);
+
             }else{
                 $content = $file->getContent();
-                $originalContent = $content;
+                $originalContent = null;
             }
             
             $recording->original_content = $originalContent;
